@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="v1.0.2-57-ge8e9487" orientation="orthogonal" renderorder="right-down" width="8" height="36" tilewidth="32" tileheight="32" backgroundcolor="#007000" nextobjectid="23">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="29" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="32" height="32" source="../textures/circuit/circuit_00.png"/>
+  </tile>
+  <tile id="1">
+   <image width="32" height="32" source="../textures/circuit/circuit_01.png"/>
+  </tile>
+  <tile id="2">
+   <image width="32" height="32" source="../textures/circuit/circuit_02.png"/>
+  </tile>
+  <tile id="3">
+   <image width="32" height="32" source="../textures/circuit/circuit_03.png"/>
+  </tile>
+  <tile id="4">
+   <image width="32" height="32" source="../textures/circuit/circuit_04.png"/>
+  </tile>
+  <tile id="5">
+   <image width="32" height="32" source="../textures/circuit/circuit_05.png"/>
+  </tile>
+  <tile id="6">
+   <image width="32" height="32" source="../textures/circuit/circuit_06.png"/>
+  </tile>
+  <tile id="7">
+   <image width="32" height="32" source="../textures/circuit/circuit_07.png"/>
+  </tile>
+  <tile id="8">
+   <image width="32" height="32" source="../textures/circuit/circuit_08.png"/>
+  </tile>
+  <tile id="9">
+   <image width="32" height="32" source="../textures/circuit/circuit_09.png"/>
+  </tile>
+  <tile id="10">
+   <image width="32" height="32" source="../textures/circuit/circuit_10.png"/>
+  </tile>
+  <tile id="11">
+   <image width="32" height="32" source="../textures/circuit/circuit_11.png"/>
+  </tile>
+  <tile id="12">
+   <image width="32" height="32" source="../textures/circuit/circuit_12.png"/>
+  </tile>
+  <tile id="13">
+   <image width="32" height="32" source="../textures/circuit/circuit_13.png"/>
+  </tile>
+  <tile id="14">
+   <image width="32" height="32" source="../textures/circuit/circuit_14.png"/>
+  </tile>
+  <tile id="15">
+   <image width="32" height="32" source="../textures/circuit/circuit_15.png"/>
+  </tile>
+  <tile id="16">
+   <image width="32" height="32" source="../textures/circuit/circuit_16.png"/>
+  </tile>
+  <tile id="17">
+   <image width="32" height="32" source="../textures/circuit/circuit_17.png"/>
+  </tile>
+  <tile id="18">
+   <image width="32" height="32" source="../textures/circuit/circuit_18.png"/>
+  </tile>
+  <tile id="19">
+   <image width="32" height="32" source="../textures/circuit/circuit_19.png"/>
+  </tile>
+  <tile id="20">
+   <image width="32" height="32" source="../textures/circuit/circuit_20.png"/>
+  </tile>
+  <tile id="21">
+   <image width="32" height="32" source="../textures/circuit/circuit_21.png"/>
+  </tile>
+  <tile id="22">
+   <image width="32" height="32" source="../textures/circuit/circuit_22.png"/>
+  </tile>
+  <tile id="23">
+   <image width="32" height="32" source="../textures/circuit/circuit_23.png"/>
+  </tile>
+  <tile id="24">
+   <image width="32" height="32" source="../textures/circuit/circuit_24.png"/>
+  </tile>
+  <tile id="25">
+   <image width="32" height="32" source="../textures/circuit/circuit_25.png"/>
+  </tile>
+  <tile id="26">
+   <image width="32" height="32" source="../textures/circuit/circuit_26.png"/>
+  </tile>
+  <tile id="27">
+   <image width="32" height="32" source="../textures/circuit/circuit_27.png"/>
+  </tile>
+  <tile id="28">
+   <image width="32" height="32" source="../textures/circuit/circuit_28.png"/>
+  </tile>
+ </tileset>
+ <layer name="background" width="8" height="36">
+  <data encoding="csv">
+16,14,14,14,14,14,14,16,
+12,20,24,0,0,24,20,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,20,0,0,0,0,20,13,
+12,0,0,0,0,11,11,13,
+12,0,0,0,0,21,21,13,
+12,0,0,0,0,4,7,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,11,0,0,0,0,13,
+12,0,21,0,0,0,0,13,
+12,23,21,0,0,0,0,13,
+12,0,10,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,0,0,0,0,0,0,13,
+12,20,23,0,0,23,20,13,
+16,15,15,15,15,15,15,16
+</data>
+ </layer>
+ <objectgroup name="enemies">
+  <object id="17" x="127.668" y="834.829">
+   <polyline points="0,0 0.498703,230.9"/>
+  </object>
+  <object id="18" x="34.9092" y="783.463">
+   <polyline points="0,0 189.507,0"/>
+  </object>
+  <object id="19" x="223.918" y="749.551">
+   <polyline points="0,0 -191.003,0.498703"/>
+  </object>
+  <object id="20" x="36.904" y="321.664">
+   <polyline points="0,0 171.055,71.8133 1.99481,142.13 166.567,222.422 13.9637,332.136 136.146,146.619 20.9455,55.3561"/>
+  </object>
+  <object id="21" x="46.8781" y="170.557">
+   <polyline points="0,0 160.084,128.665"/>
+  </object>
+  <object id="22" x="207.461" y="164.073">
+   <polyline points="0,0 -160.084,136.146"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="collectables"/>
+ <objectgroup name="markers">
+  <object id="9" name="end" x="120.187" y="60.3431" width="16.4572" height="15.4598">
+   <ellipse/>
+  </object>
+  <object id="15" name="start" x="126.172" y="1097.15" rotation="-90">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="barriers">
+  <object id="16" type="barrier" x="36.4053" y="126.172" width="187.512" height="7.48055"/>
+ </objectgroup>
+</map>
