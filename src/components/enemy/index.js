@@ -1,11 +1,12 @@
 import Boid from 'boid';
-import {Sprite, Texture} from 'pixi.js';
+import {Sprite} from 'pixi.js';
 
 export default class Enemy {
-    constructor(ob) {
+    constructor(ob, textures) {
         this.ob = ob;
         this.counter = 0;
         this.frameCount = 0;
+        this.health = 10;
 
         Object.keys(ob)
             .filter(key => !['top', 'right', 'bottom', 'left'].includes(key))
@@ -18,7 +19,7 @@ export default class Enemy {
         });
         this.boid.edgeBehavior = null;
 
-        this.textures = [0, 1].map(n => Texture.from(`beetle_${n}`));
+        this.textures = textures;
 
         this.view = this.gfx.addChild(Sprite.from(this.textures[0]));
         this.view.anchor.set(0.5);

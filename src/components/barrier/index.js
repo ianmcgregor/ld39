@@ -1,6 +1,7 @@
 import {extras, Texture} from 'pixi.js';
 import array from 'usfl/array/array';
 import roundToNearest from 'usfl/math/roundToNearest';
+import sono from 'sono';
 
 export default class Barrier {
     constructor(ob) {
@@ -44,11 +45,13 @@ export default class Barrier {
 
         if (this.counter === this.interval) {
             this.gfx.visible = false;
+            sono.stop('noise');
         }
 
         if (this.counter === this.interval * 2) {
             this.gfx.visible = true;
             this.counter = 0;
+            sono.play('noise');
         }
     }
 }

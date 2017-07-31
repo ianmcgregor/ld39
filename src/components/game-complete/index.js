@@ -1,6 +1,7 @@
 import Screen from '../screens/screen';
 import Button from '../button';
 import {Container, Graphics, Text} from 'pixi.js';
+import sono from 'sono';
 
 export default class GameComplete extends Screen {
     constructor(app) {
@@ -53,10 +54,19 @@ export default class GameComplete extends Screen {
         this.btn = new Button(btnView);
         this.container.interactive = true;
         this.container.addChild(btnView);
-        this.btn.onPress.add(() => this.screens.goto('game'));
+        this.btn.onPress.add(() => {
+            this.screens.goto('game');
+            sono.play('ting');
+        });
     }
 
-    onShow() {}
+    onShow() {
+        sono.get('music').fade(0, 1);
+        this.timeoutId = window.setTimeout(() => {
+            sono.get('back').volume = 1;
+            sono.play('back');
+        }, 1000);
+    }
 
     onShown() {}
 

@@ -5,6 +5,7 @@ import Screen from '../screens/screen';
 import World from '../world';
 import linkedList from 'usfl/linked-list';
 import TileMap from '../tiled/tile-map';
+import sono from 'sono';
 
 export default class Game extends Screen {
     constructor(app) {
@@ -12,6 +13,8 @@ export default class Game extends Screen {
         this.app = app;
         this.container = new Container();
         this.update = this.update.bind(this);
+        this.elapsed = 0;
+        this.suspenseAt = 0;
 
         this.levels = linkedList([
             {name: '1', map: new TileMap(this.app.loader.resources.level00.data)},
@@ -36,11 +39,31 @@ export default class Game extends Screen {
     onShow() {
         this.initLevel(this.levels.first);
         this.resize(this.w, this.h);
+
+        sono.get('back').fade(0, 1);
+        window.setTimeout(() => {
+            sono.get('music').volume = 1;
+            sono.play('music');
+            sono.get('suspense').volume = 0;
+            sono.play('suspense');
+        }, 1000);
     }
 
     update(dt) {
         this.world.update(dt);
         this.hud.update(dt);
+
+        this.elapsed += dt;
+
+        if (this.elapsed - this.suspenseAt > 18) {
+            this.suspenseAt = this.elapsed;
+            const suspense = sono.get('suspense');
+            if (suspense.volume > 0.5) {
+                suspense.fade(0, 4.5);
+            } else {
+                suspense.fade(1, 4.5);
+            }
+        }
     }
 
     destroyLevel() {
@@ -49,6 +72,8 @@ export default class Game extends Screen {
         this.world.destroy();
         this.container.removeChild(this.world.container);
         this.updateListener.detach();
+        sono.stop('noise');
+        sono.stop('engine');
     }
 
     onLevelComplete() {

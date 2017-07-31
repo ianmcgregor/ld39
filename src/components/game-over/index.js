@@ -1,6 +1,7 @@
 import Screen from '../screens/screen';
 import Button from '../button';
 import {Container, Graphics, Text} from 'pixi.js';
+import sono from 'sono';
 
 export default class GameOver extends Screen {
     constructor(app) {
@@ -63,21 +64,31 @@ export default class GameOver extends Screen {
         this.btn = new Button(btnView);
         this.container.interactive = true;
         this.container.addChild(btnView);
-        this.btn.onPress.add(() => this.screens.goto('game'));
+        this.btn.onPress.add(() => {
+            window.clearTimeout(this.timeoutId);
+            this.screens.goto('game');
+            sono.play('ting');
+        });
     }
 
     onShow() {
         const msg = this.app.gameOverReason === 'dead' ? 'YOU WERE DESTROYED' : 'YOU RAN OUT OF FUEL';
         console.log('this.app.gameOverReason', this.app.gameOverReason);
         this.reasonText.text = msg;
-        this.reasonText.setStyle({
+        this.reasonText.style = {
             align: 'center',
             fill: 0xffffff,
             fontFamily: 'Space Mono',
             fontSize: this.app.gameOverReason === 'dead' ? 62 : 60,
             padding: 10
-        });
+        };
         this.reasonText.position.set((this.w - this.reasonText.width) / 2, this.h - 165);
+
+        sono.get('music').fade(0, 1);
+        this.timeoutId = window.setTimeout(() => {
+            sono.get('back').volume = 1;
+            sono.play('back');
+        }, 1000);
     }
 
     onShown() {}

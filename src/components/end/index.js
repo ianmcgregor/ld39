@@ -2,6 +2,7 @@ import Particle from 'usfl/particle';
 import ParticleGroup from 'usfl/particle/ParticleGroup';
 import {Sprite, Graphics} from 'pixi.js';
 import random from 'usfl/math/random';
+import sono from 'sono';
 
 export default class End {
     constructor(ob) {
@@ -29,7 +30,7 @@ export default class End {
             );
             return p;
         });
-        this.open = false;
+        this._open = false;
     }
 
     createParticle() {
@@ -44,10 +45,19 @@ export default class End {
         frag.gfx.visible = true;
     }
 
+    get open() {
+        return this._open;
+    }
+
+    set open(value) {
+        this._open = value;
+        sono.play('string', 1);
+    }
+
     update() {
         this.counter += 0.01;
 
-        if (!this.open) {
+        if (!this._open) {
             this.vortex.rotation = Math.sin(this.counter) * 0.6;
             return;
         }

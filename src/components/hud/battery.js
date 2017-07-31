@@ -38,9 +38,9 @@ export default class Battery {
     }
 
     update(value) {
-        this.percent.text = `${Math.round(value / 10)}%`;
+        this.percent.text = `${Math.round(value)}%`;
 
-        const x = Math.min(Math.floor(value / 200), 2);
+        const x = Math.min(Math.floor(value / 20), 2);
         const texture = this.textures[x];
         this.bg.texture = texture;
     }

@@ -1,5 +1,5 @@
 import MiniSignal from 'mini-signals';
-import {Container, Graphics} from 'pixi.js';
+import {Container, Graphics, Texture} from 'pixi.js';
 import Player from '../player';
 import Collision from '../tiled/collision';
 import ScreenShake from '../screen-shake';
@@ -12,6 +12,8 @@ import linkedList from 'usfl/linked-list';
 import PooledList from '../utils/pooled-list';
 import Explosion from '../explosion';
 import End from '../end';
+import Power from '../power';
+import sono from 'sono';
 
 const {floor, random} = Math;
 
@@ -36,7 +38,8 @@ export default class World {
         const level = tilemap(map);
         this.container.addChild(level);
         this.layer = map.layer.background;
-        this.enemies = linkedList(map.layer.enemies.objects.map(e => new Enemy(e)));
+        const enemyTextures = [0, 1].map(n => Texture.from(`beetle_${n}`));
+        this.enemies = linkedList(map.layer.enemies.objects.map(e => new Enemy(e, enemyTextures)));
 
         const collectables = map.layer.collectables;
         console.log('-->', collectables);
@@ -70,7 +73,7 @@ export default class World {
         this.screenShake = new ScreenShake(this.app.loop, this.app.stage);
 
         const colors = [0xff0000, 0xff9c00, 0xffba00];
-        const textures = colors.map(c => app.renderer.generateTexture(
+        const explosionTextures = colors.map(c => app.renderer.generateTexture(
             new Graphics()
                 .beginFill(c)
                 .drawCircle(0, 0, 2)
@@ -78,9 +81,15 @@ export default class World {
         ));
 
         this.explosions = new PooledList(() => {
-            const explosion = new Explosion(textures);
+            const explosion = new Explosion(explosionTextures);
             this.container.addChild(explosion.container);
             return explosion;
+        });
+
+        this.powers = new PooledList(() => {
+            const power = new Power(Object.keys(this.player.power));
+            this.container.addChild(power.container);
+            return power;
         });
 
         this.end = new End(end);
@@ -98,29 +107,26 @@ export default class World {
     update(dt) {
         this.elapsed += dt;
 
-        this.end.update();
+        this.end.update(dt);
 
         if (this.end.open && this.collision.intersects(this.player, this.end)) {
+            sono.play('exit');
             this.levelComplete.dispatch();
             return;
         }
 
-        this.player.update();
+        this.player.update(dt);
 
         if (!this.player.alive) {
+            sono.play('dead');
             this.gameOver.dispatch('dead');
             return;
         }
 
         if (!this.player.power.fuel) {
+            sono.play('dead');
             this.gameOver.dispatch('fuel');
             return;
-        }
-
-        let enemy = this.enemies.first;
-        while (enemy) {
-            enemy.update();
-            enemy = enemy.next;
         }
 
         const colliding = this.collision.collide(this.player, this.layer);
@@ -141,6 +147,8 @@ export default class World {
         this.updateItems();
 
         this.updateExplosions();
+
+        this.updatePowers();
     }
 
     explode(ob) {
@@ -163,28 +171,61 @@ export default class World {
         }
     }
 
+    updatePowers() {
+        let power = this.powers.first;
+        while (power) {
+            const next = power.next;
+            power.update();
+            if (this.collision.intersects(this.player, power)) {
+                this.player.heal(power.type);
+                power.collect();
+                sono.play('power');
+            }
+            if (!power.alive) {
+                this.powers.remove(power);
+            }
+            power = next;
+        }
+    }
+
+    destroyEnemy(enemy, powerup = true) {
+        const pos = {
+            x: enemy.left,
+            y: enemy.top
+        };
+        this.explosions.create().start(pos);
+        enemy.destroy();
+        sono.play('wheesh', 0.1);
+        sono.play('damage');
+        this.enemies.remove(enemy);
+        if (!this.enemies.length) {
+            this.end.open = true;
+        }
+        if (powerup) {
+            this.powers.create().start(pos);
+        }
+    }
+
     updateEnemies() {
         let enemy = this.enemies.first;
         while (enemy) {
+            enemy.update();
             if (this.collision.intersects(this.player, enemy)) {
                 // console.log('ENEMY COLLISION');
-                this.player.damage(10);
+                this.player.damage(2);
+                enemy.health -= 0.5;
                 this.screenShake.start();
                 this.explode(this.player);
+            }
+            if (enemy.health < 0) {
+                this.destroyEnemy(enemy, false);
+                return;
             }
             const next = enemy.next;
             let b = this.player.bullets.list.first;
             while (b) {
                 if (this.collision.intersects(b, enemy)) {
-                    this.explosions.create().start({
-                        x: enemy.left,
-                        y: enemy.top
-                    });
-                    enemy.destroy();
-                    this.enemies.remove(enemy);
-                    if (!this.enemies.length) {
-                        this.end.open = true;
-                    }
+                    this.destroyEnemy(enemy);
                     b = null;
                 } else {
                     b = b.next;
@@ -202,7 +243,7 @@ export default class World {
 
             if (barrier.gfx.visible && this.collision.intersects(this.player, barrier)) {
                 // this.player.speed = -this.player.speed;
-                this.player.damage(10);
+                this.player.damage(1);
                 this.screenShake.start();
                 this.explode(this.player);
             }
@@ -236,7 +277,6 @@ export default class World {
     }
 
     resize(w, h) {
-        console.log('World resize', w, h);
         this.w = w;
         this.h = h;
         if (this.camera) {

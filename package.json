@@ -60,6 +60,7 @@
     "core-js": "^2.4.1",
     "normalize.css": "^7.0.0",
     "pixi.js": "^4.5.4",
+    "sono": "^2.1.1",
     "suitcss-base": "^3.0.0",
     "usfl": "^2.2.12",
     "webfontloader": "^1.6.28"

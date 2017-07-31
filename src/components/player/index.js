@@ -4,6 +4,7 @@ import rotatePoint from 'usfl/math/rotatePoint';
 import keyInput from 'usfl/input/keyInput';
 import radians from 'usfl/math/radians';
 import {Container, Graphics, Sprite} from 'pixi.js';
+import sono from 'sono';
 const {random} = Math;
 
 export default class Player extends Particle {
@@ -17,6 +18,11 @@ export default class Player extends Particle {
             // bounce: {x: 0, y: 0}
         });
 
+        this.elapsed = 0;
+        this.shotAt = 0;
+        this.damagedAt = 0;
+
+        this.maxPower = 100;
         this.counter = 0;
 
         this.layer = layer;
@@ -26,9 +32,9 @@ export default class Player extends Particle {
         // console.log('start.rotation', start.rotation, radians(start.rotation));
         // console.log('this.angle', this.angle);
         this.power = {
-            shields: 1000,
-            weapons: 1000,
-            fuel: 1000
+            shields: this.maxPower,
+            weapons: this.maxPower,
+            fuel: this.maxPower
         };
 
         this.gfx = container.addChild(new Container());
@@ -63,8 +69,10 @@ export default class Player extends Particle {
         this.input = keyInput();
     }
 
-    update() {
+    update(dt) {
         super.update();
+
+        this.elapsed += dt;
 
         if (this.input.left()) {
             this.angle -= 0.05;
@@ -109,10 +117,19 @@ export default class Player extends Particle {
             p.angle = this.angle + (-Math.PI / 16 + Math.PI / 8 * random()) + Math.PI;
             p.lifeTime = 30;
             p.gfx.visible = true;
-            this.power.fuel -= 0.5;
+            this.power.fuel -= this.maxPower / 1000;
             if (this.power.fuel < 0) {
                 this.power.fuel = 0;
             }
+        }
+
+        if (forward || reverse) {
+            sono.play('engine');
+            sono.get('engine').fade(1, 0.1);
+        }
+
+        if (!forward && !reverse) {
+            sono.get('engine').fade(0, 0.2);
         }
 
         this.thrust.update((p) => {
@@ -130,12 +147,17 @@ export default class Player extends Particle {
                 y: this.y,
                 speed: 8 + random() * 4,
                 angle: bulletAngle,
-                lifeTime: 15
+                lifeTime: 20
             });
             rotatePoint({x: this.x + 10, y: this.y}, this.angle, this, p);
             p.gfx.visible = true;
+
+            if (this.elapsed - this.shotAt > 0.05) {
+                sono.play('shoot');
+                this.shotAt = this.elapsed;
+            }
             // this.accellerate(0.05, this.angle + Math.PI);
-            this.power.weapons--;
+            this.power.weapons -= this.maxPower / 200;
             if (this.power.weapons < 0) {
                 this.power.weapons = 0;
             }
@@ -164,11 +186,22 @@ export default class Player extends Particle {
         this.shield.scale.set(1 + Math.cos(this.counter) * 0.05);
     }
 
-    damage(x = 1) {
+    damage(x = 0.5) {
+        if (this.elapsed - this.damagedAt > 0.05) {
+            sono.play('damage');
+            this.damagedAt = this.elapsed;
+        }
         this.power.shields -= x;
         if (this.power.shields < 0) {
             this.power.shields = 0;
             this.alive = false;
+        }
+    }
+
+    heal(type) {
+        this.power[type] += 10;
+        if (this.power[type] > this.maxPower) {
+            this.power[type] = this.maxPower;
         }
     }
 

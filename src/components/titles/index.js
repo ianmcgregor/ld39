@@ -1,6 +1,7 @@
 import Screen from '../screens/screen';
 import Button from '../button';
 import {Container, Graphics, Text} from 'pixi.js';
+import sono from 'sono';
 
 export default class Title extends Screen {
     constructor(app) {
@@ -63,7 +64,12 @@ export default class Title extends Screen {
         this.btn = new Button(btnView);
         this.container.interactive = true;
         this.container.addChild(btnView);
-        this.btn.onPress.add(() => this.screens.goto('game'));
+        this.btn.onPress.add(() => {
+            this.screens.goto('game');
+            sono.play('ting');
+        });
+        sono.get('back').volume = 1;
+        sono.play('back');
     }
 
     onShow() {}
