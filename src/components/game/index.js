@@ -43,9 +43,9 @@ export default class Game extends Screen {
         sono.get('back').fade(0, 1);
         window.setTimeout(() => {
             sono.get('music').volume = 1;
-            sono.play('music');
+            sono.get('music').stop().play();
             sono.get('suspense').volume = 0;
-            sono.play('suspense');
+            sono.get('suspense').stop().play();
         }, 1000);
     }
 

@@ -51,7 +51,7 @@ export default class End {
 
     set open(value) {
         this._open = value;
-        sono.play('string', 1);
+        sono.get('string').play(1);
     }
 
     update() {

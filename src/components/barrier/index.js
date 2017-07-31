@@ -29,8 +29,9 @@ export default class Barrier {
 
         if (horizontal) {
             this.view.rotation = 0 - Math.PI / 2;
+            this.view.position.set(0, 10);
         } else {
-            this.view.x = -3;
+            this.view.position.set(-3, 0);
         }
 
     }

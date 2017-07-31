@@ -95,7 +95,8 @@ sono.load({
     }, {
         id: 'shoot',
         url: ['audio/shoot3.ogg', 'audio/shoot3.mp3'],
-        volume: 0.3,
+        playbackRate: 1,
+        volume: 0.1,
         effects: [sono.echo({
             delay: 0.1
         })]

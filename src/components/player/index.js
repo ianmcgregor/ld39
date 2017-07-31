@@ -85,7 +85,7 @@ export default class Player extends Particle {
         const forward = this.power.fuel > 0 && this.input.up();
         const reverse = this.power.fuel > 0 && this.input.down();
         const moving = forward || reverse;
-        const accel = moving ? 0.1 : 0;
+        const accel = moving ? 0.12 : 0;
         let carAngle = this.angle;
         if (this.inReverse) {
             carAngle = carAngle + Math.PI;
@@ -141,15 +141,20 @@ export default class Player extends Particle {
         });
 
         if (this.power.weapons > 0 && this.input.space()) {
-            const bulletAngle = this.angle - Math.PI / 32 + Math.PI / 16 * random();
+            let bulletAngle = this.angle - Math.PI / 32 + Math.PI / 16 * random();
+            let offset = 10;
+            if (this.inReverse) {
+                bulletAngle = bulletAngle + Math.PI;
+                offset = -10;
+            }
             const p = this.bullets.create({
-                x: this.x + 10,
+                x: this.x + offset,
                 y: this.y,
                 speed: 8 + random() * 4,
                 angle: bulletAngle,
-                lifeTime: 20
+                lifeTime: 18
             });
-            rotatePoint({x: this.x + 10, y: this.y}, this.angle, this, p);
+            rotatePoint({x: this.x + offset, y: this.y}, this.angle, this, p);
             p.gfx.visible = true;
 
             if (this.elapsed - this.shotAt > 0.05) {

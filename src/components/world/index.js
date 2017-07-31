@@ -27,6 +27,7 @@ export default class World {
 
         this.elapsed = 0;
         this.explodedAt = 0;
+        this.damagedAt = 0;
 
         this.container.addChild(
             new Graphics()
@@ -188,21 +189,29 @@ export default class World {
         }
     }
 
-    destroyEnemy(enemy, powerup = true) {
-        const pos = {
+    damageEnemy(enemy) {
+        this.explode({
             x: enemy.left,
             y: enemy.top
-        };
-        this.explosions.create().start(pos);
+        });
+        if (this.elapsed - this.damagedAt > 0.02) {
+            sono.play('damage');
+            this.damagedAt = this.elapsed;
+        }
+    }
+
+    destroyEnemy(enemy, powerup = true) {
         enemy.destroy();
-        sono.play('wheesh', 0.1);
-        sono.play('damage');
+        sono.get('wheesh').play(0.2);
         this.enemies.remove(enemy);
         if (!this.enemies.length) {
             this.end.open = true;
         }
         if (powerup) {
-            this.powers.create().start(pos);
+            this.powers.create().start({
+                x: enemy.left,
+                y: enemy.top
+            });
         }
     }
 
@@ -216,6 +225,7 @@ export default class World {
                 enemy.health -= 0.5;
                 this.screenShake.start();
                 this.explode(this.player);
+                this.damageEnemy(enemy);
             }
             if (enemy.health < 0) {
                 this.destroyEnemy(enemy, false);
@@ -225,7 +235,11 @@ export default class World {
             let b = this.player.bullets.list.first;
             while (b) {
                 if (this.collision.intersects(b, enemy)) {
-                    this.destroyEnemy(enemy);
+                    enemy.health -= 1;
+                    this.damageEnemy(enemy);
+                    if (enemy.health < 0) {
+                        this.destroyEnemy(enemy, true);
+                    }
                     b = null;
                 } else {
                     b = b.next;
