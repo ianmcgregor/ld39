@@ -1,0 +1,132 @@
+{"frames": {
+
+"battery_0":
+{
+	"frame": {"x":3,"y":3,"w":64,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":32},
+	"sourceSize": {"w":64,"h":32}
+},
+"battery_1":
+{
+	"frame": {"x":3,"y":39,"w":64,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":32},
+	"sourceSize": {"w":64,"h":32}
+},
+"battery_2":
+{
+	"frame": {"x":3,"y":75,"w":64,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":32},
+	"sourceSize": {"w":64,"h":32}
+},
+"beetle_0":
+{
+	"frame": {"x":71,"y":99,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"beetle_1":
+{
+	"frame": {"x":91,"y":99,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"current0":
+{
+	"frame": {"x":107,"y":59,"w":6,"h":30},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":6,"h":30},
+	"sourceSize": {"w":8,"h":30}
+},
+"current1":
+{
+	"frame": {"x":71,"y":65,"w":8,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":30},
+	"sourceSize": {"w":8,"h":30}
+},
+"current2":
+{
+	"frame": {"x":117,"y":31,"w":6,"h":30},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":6,"h":30},
+	"sourceSize": {"w":8,"h":30}
+},
+"current3":
+{
+	"frame": {"x":83,"y":65,"w":8,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":30},
+	"sourceSize": {"w":8,"h":30}
+},
+"current4":
+{
+	"frame": {"x":117,"y":65,"w":6,"h":30},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":0,"w":6,"h":30},
+	"sourceSize": {"w":8,"h":30}
+},
+"current5":
+{
+	"frame": {"x":95,"y":65,"w":8,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":30},
+	"sourceSize": {"w":8,"h":30}
+},
+"power":
+{
+	"frame": {"x":107,"y":3,"w":14,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":24},
+	"sourceSize": {"w":14,"h":24}
+},
+"shield":
+{
+	"frame": {"x":71,"y":39,"w":22,"h":22},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":22},
+	"sourceSize": {"w":22,"h":22}
+},
+"truck":
+{
+	"frame": {"x":97,"y":39,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"vortex":
+{
+	"frame": {"x":71,"y":3,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "objects0@0.5x.png",
+	"format": "RGBA8888",
+	"size": {"w":126,"h":118},
+	"scale": "0.5",
+	"smartupdate": "$TexturePacker:SmartUpdate:246d89e88f497fbb70521a1bc7dac960:d98d5c665ecd8c02d84c10fe3f603ddd:7ce6931c856de20cbffdfa10360a7213$"
+}
+}

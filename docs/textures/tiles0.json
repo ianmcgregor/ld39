@@ -1,0 +1,68 @@
+{"frames": {
+
+"background1":
+{
+	"frame": {"x":3,"y":3,"w":1024,"h":640},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1024,"h":640},
+	"sourceSize": {"w":1024,"h":640}
+},
+"ground":
+{
+	"frame": {"x":1031,"y":3,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64}
+},
+"heart":
+{
+	"frame": {"x":1067,"y":275,"w":20,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":16},
+	"sourceSize": {"w":20,"h":16}
+},
+"tiles":
+{
+	"frame": {"x":1031,"y":275,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+"wall1":
+{
+	"frame": {"x":1031,"y":71,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64}
+},
+"water":
+{
+	"frame": {"x":1031,"y":139,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64}
+},
+"wave":
+{
+	"frame": {"x":1031,"y":207,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "tiles0.png",
+	"format": "RGBA8888",
+	"size": {"w":1098,"h":646},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:aaa83d2ba9ed3172eb7f33c4b2050fa8:041f51430140804f5ad8464a69201b52:40d96f12a18694dbee9dc94db6b341cf$"
+}
+}

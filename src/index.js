@@ -7,6 +7,8 @@ import Game from './components/game';
 import GameOver from './components/game-over';
 import GameComplete from './components/game-complete';
 import WebFont from 'webfontloader';
+import linkedList from 'usfl/linked-list';
+import TileMap from './components/tiled/tile-map';
 import sono from 'sono';
 import 'sono/effects';
 
@@ -42,12 +44,26 @@ app.loader.add([{
 }, {
     name: 'level02',
     url: 'json/level02.json'
+}, {
+    name: 'level03',
+    url: 'json/level03.json'
+}, {
+    name: 'level04',
+    url: 'json/level04.json'
 }]);
 
 app.loader.on('complete', () => init());
 
 function init() {
-    console.debug('loader complete', app.loader);
+    // console.debug('loader complete', app.loader);
+
+    app.levels = linkedList([
+        {name: '1', map: new TileMap(app.loader.resources.level00.data)},
+        {name: '2', map: new TileMap(app.loader.resources.level01.data)},
+        {name: '3', map: new TileMap(app.loader.resources.level02.data)},
+        {name: '4', map: new TileMap(app.loader.resources.level03.data)},
+        {name: '5', map: new TileMap(app.loader.resources.level04.data)}
+    ]);
 
     screens.add(new Titles(app), 'titles');
     screens.add(new Game(app), 'game');
@@ -66,7 +82,7 @@ WebFont.load({
         families: ['Space Mono']
     },
     active: () => {
-        console.log('FONTS LOADED');
+        // console.log('FONTS LOADED');
         app.loader.load();
     }
 });

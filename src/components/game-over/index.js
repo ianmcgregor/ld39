@@ -73,7 +73,7 @@ export default class GameOver extends Screen {
 
     onShow() {
         const msg = this.app.gameOverReason === 'dead' ? 'YOU WERE DESTROYED' : 'YOU RAN OUT OF FUEL';
-        console.log('this.app.gameOverReason', this.app.gameOverReason);
+        // console.log('this.app.gameOverReason', this.app.gameOverReason);
         this.reasonText.text = msg;
         this.reasonText.style = {
             align: 'center',

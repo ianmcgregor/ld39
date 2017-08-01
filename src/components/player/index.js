@@ -117,15 +117,16 @@ export default class Player extends Particle {
             p.angle = this.angle + (-Math.PI / 16 + Math.PI / 8 * random()) + Math.PI;
             p.lifeTime = 30;
             p.gfx.visible = true;
-            this.power.fuel -= this.maxPower / 1000;
-            if (this.power.fuel < 0) {
-                this.power.fuel = 0;
-            }
         }
 
         if (forward || reverse) {
             sono.play('engine');
             sono.get('engine').fade(1, 0.1);
+
+            this.power.fuel -= this.maxPower / 1000;
+            if (this.power.fuel < 0) {
+                this.power.fuel = 0;
+            }
         }
 
         if (!forward && !reverse) {
@@ -210,7 +211,7 @@ export default class Player extends Particle {
         }
     }
 
-    collect(item) {
-        console.log('COLLECT', item.type);
-    }
+    // collect(item) {
+    //     console.log('COLLECT', item.type);
+    // }
 }

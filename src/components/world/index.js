@@ -3,7 +3,7 @@ import {Container, Graphics, Texture} from 'pixi.js';
 import Player from '../player';
 import Collision from '../tiled/collision';
 import ScreenShake from '../screen-shake';
-import QuadTree from 'usfl/quad-tree';
+// import QuadTree from 'usfl/quad-tree';
 import Camera from '../camera';
 import tilemap from '../map';
 import Barrier from '../barrier';
@@ -42,17 +42,16 @@ export default class World {
         const enemyTextures = [0, 1].map(n => Texture.from(`beetle_${n}`));
         this.enemies = linkedList(map.layer.enemies.objects.map(e => new Enemy(e, enemyTextures)));
 
-        const collectables = map.layer.collectables;
-        console.log('-->', collectables);
+        // const collectables = map.layer.collectables;
         // this.qt = new QuadTree({x: 0, y: 0, width: this.layer.width, height: this.layer.height}, 3);
-        this.qt = new QuadTree({x: 0, y: 0, width: this.layer.width, height: this.layer.height}, 2);
-        const hearts = collectables.objects;
+        // this.qt = new QuadTree({x: 0, y: 0, width: this.layer.width, height: this.layer.height}, 2);
+        // const hearts = collectables.objects;
         // .map(b => new Barrier(b));
-        this.qt.insert(hearts);
+        // this.qt.insert(hearts);
         // console.debug('-->', map.layer.markers.map.start);
         const {start, end} = map.layer.markers.map;
 
-        console.log('start', start);
+        start.gfx.visible = false;
 
         this.barriers = linkedList(map.layer.barriers.objects.map(b => new Barrier(b)));
 
@@ -145,7 +144,7 @@ export default class World {
 
         this.updateBarriers();
 
-        this.updateItems();
+        // this.updateItems();
 
         this.updateExplosions();
 
@@ -266,29 +265,29 @@ export default class World {
         }
     }
 
-    updateItems() {
-        const items = this.qt.retrieve(this.player);
-        // console.log('qt items.length:', items.length);
-        let l = items.length;
-        while (--l > -1) {
-            const item = items[l];
-
-            if (typeof item.update === 'function') {
-                item.update();
-            }
-
-            if (item.gfx.visible && this.collision.intersects(this.player, item)) {
-                console.debug('collide', item.type);
-                switch (item.type) {
-                    case 'heart':
-                        this.player.collect(item);
-                        item.gfx.visible = false;
-                        break;
-                    default:
-                }
-            }
-        }
-    }
+    // updateItems() {
+    //     const items = this.qt.retrieve(this.player);
+    //     // console.log('qt items.length:', items.length);
+    //     let l = items.length;
+    //     while (--l > -1) {
+    //         const item = items[l];
+    //
+    //         if (typeof item.update === 'function') {
+    //             item.update();
+    //         }
+    //
+    //         if (item.gfx.visible && this.collision.intersects(this.player, item)) {
+    //             console.debug('collide', item.type);
+    //             switch (item.type) {
+    //                 case 'heart':
+    //                     this.player.collect(item);
+    //                     item.gfx.visible = false;
+    //                     break;
+    //                 default:
+    //             }
+    //         }
+    //     }
+    // }
 
     resize(w, h) {
         this.w = w;

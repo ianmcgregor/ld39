@@ -44,7 +44,7 @@ function getGraphic(object, color = 0xff0000) {
 // }
 
 function renderTileLayer(layer) {
-    console.log('layer', layer);
+    // console.log('layer', layer);
     const holder = new Container();
     layer.objects.forEach((object) => {
         const {frame, x, y} = object;
@@ -64,7 +64,7 @@ function renderObjectLayer(layer) {
         const {frame, x, y} = object;
         if (frame) {
             if (frame.image && !utils.TextureCache[frame.id]) {
-                console.log('renderObjectLayer frame.image =', frame.image);
+                // console.log('renderObjectLayer frame.image =', frame.image);
                 const tex = Texture.from(frame.image);
                 const rect = new Rectangle(tex.frame.x + frame.x, tex.frame.y + frame.y, frame.width, frame.height);
                 utils.TextureCache[frame.id] = new Texture(tex.baseTexture, rect);

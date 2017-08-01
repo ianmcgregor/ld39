@@ -40,12 +40,12 @@ export default function TileMap(map) {
             }
 
             const frame = frames[gid];
-            if (!frame) {
-                console.log('gid', gid);
-                console.log('frame', frame);
-                console.log('frames', Object.keys(frames));
-                // console.log('frame', frames.find(f => Number(f.gid) === gid));
-            }
+            // if (!frame) {
+            // console.log('gid', gid);
+            // console.log('frame', frame);
+            // console.log('frames', Object.keys(frames));
+            // console.log('frame', frames.find(f => Number(f.gid) === gid));
+            // }
             // tiled reg point is bottom left:
             const yOffset = frame && frame.height > tileHeight ? tileHeight - frame.height : 0;
 

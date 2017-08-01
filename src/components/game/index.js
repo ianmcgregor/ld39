@@ -3,8 +3,6 @@ import Hud from '../hud';
 import {Container} from 'pixi.js';
 import Screen from '../screens/screen';
 import World from '../world';
-import linkedList from 'usfl/linked-list';
-import TileMap from '../tiled/tile-map';
 import sono from 'sono';
 
 export default class Game extends Screen {
@@ -15,16 +13,11 @@ export default class Game extends Screen {
         this.update = this.update.bind(this);
         this.elapsed = 0;
         this.suspenseAt = 0;
-
-        this.levels = linkedList([
-            {name: '1', map: new TileMap(this.app.loader.resources.level00.data)},
-            {name: '2', map: new TileMap(this.app.loader.resources.level01.data)},
-            {name: '3', map: new TileMap(this.app.loader.resources.level02.data)}
-        ]);
     }
 
     initLevel(level) {
         this.level = level;
+        this.app.level = level;
         this.world = new World(this.app, level.map);
         this.container.addChildAt(this.world.container, 0);
         this.levelCompleteListener = this.world.levelComplete.add(() => this.onLevelComplete());
@@ -37,7 +30,11 @@ export default class Game extends Screen {
     }
 
     onShow() {
-        this.initLevel(this.levels.first);
+        if (this.app.level) {
+            this.initLevel(this.app.level);
+        } else {
+            this.initLevel(this.app.levels.first);
+        }
         this.resize(this.w, this.h);
 
         sono.get('back').fade(0, 1);
@@ -77,7 +74,7 @@ export default class Game extends Screen {
     }
 
     onLevelComplete() {
-        console.log('LEVEL COMPLETE');
+        // console.log('LEVEL COMPLETE');
         this.destroyLevel();
 
         if (this.level.next) {
@@ -89,7 +86,7 @@ export default class Game extends Screen {
     }
 
     onGameOver(reason) {
-        console.log('onGameOver', reason);
+        // console.log('onGameOver', reason);
         this.app.gameOverReason = reason;
         this.destroyLevel();
         this.screens.goto('game-over');

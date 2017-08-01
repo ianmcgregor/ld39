@@ -3,7 +3,7 @@ const {abs, min, max} = Math;
 
 export default class Camera {
     constructor(target, container, w, h) {
-        console.log('camera', w, h);
+        // console.log('camera', w, h);
         this.target = target;
         this.container = container;
         this.w = w;
@@ -27,7 +27,7 @@ export default class Camera {
     }
 
     resize(w, h) {
-        console.log('camera.resize', w, h);
+        // console.log('camera.resize', w, h);
         this.w = w;
         this.h = h;
     }

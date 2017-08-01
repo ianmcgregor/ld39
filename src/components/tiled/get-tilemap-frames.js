@@ -3,7 +3,7 @@ import getTextureId from './get-texture-id';
 function getTilesetFrames(tileset) {
     const {name, firstgid, tilewidth, tileheight} = tileset;
 
-    console.log('firstgid', firstgid);
+    // console.log('firstgid', firstgid);
 
     return Object.keys(tileset.tiles)
         .reduce((newOb, key) => {

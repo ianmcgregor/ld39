@@ -83,7 +83,7 @@ export default class Title extends Screen {
     resize(w, h) {
         super.resize(w, h);
 
-        this.titleText.position.set((w - this.titleText.width) / 2, 25);
+        this.titleText.position.set((w - this.titleText.width) / 2, 15);
         this.titleText2.position.set((w - this.titleText2.width) / 2, this.titleText.y + this.titleText.height - 20);
 
         this.instructions.position.set((this.app.width - this.instructions.width) / 2, h - 50);

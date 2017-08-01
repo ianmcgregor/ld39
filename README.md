@@ -1,5 +1,13 @@
 # Ludum Dare 39
 
+The mainframe has become infested with bugs. You must control the BUG SQUASHER 9000 to eradicate them!
+
+Battle your way through several levels of computer circuitry. But be careful: the charge for each of the bug squasher's systems (shield, weapons, fuel) is quite limited.
+
+I planned to enter the compo but needed some extra time. I made all the code, audio and graphics (badly!).
+
+The code is all JavaScript running on PixiJS. I used PISKEL for the graphics in the end. The music and sfx were all made using Korg Volca and Roland JX3P synths and put together in Reaper.
+
 ## Usage
 
 ### Building

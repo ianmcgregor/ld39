@@ -9,7 +9,7 @@ export default class AlphaTransition {
     }
 
     begin(manager, current, next) {
-        console.log('transition.begin');
+        // console.log('transition.begin');
         if (current) {
             if (current.onHide) {
                 current.onHide();
